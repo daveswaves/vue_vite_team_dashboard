@@ -13,7 +13,9 @@ let team = useTeamStore();
          px-4 py-2
          rounded
          disabled:bg-gray-400"
-         :disabled="!team.spotsRemaining">Add Member ({{ team.spotsRemaining }} spots left)</button>
+         :disabled="!team.spotsRemaining"
+         @click="$emit('add')"
+         >Add Member ({{ team.spotsRemaining }} spots left)</button>
       </div>
 
       <div>
