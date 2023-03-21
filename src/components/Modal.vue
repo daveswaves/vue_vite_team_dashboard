@@ -5,21 +5,34 @@ defineProps({
 </script>
 
 <template>
-   <div v-if="show" class="modal-mask">
-      <div class="modal-container">
-         <!-- <header>
-            <slot name="header">default header</slot>
-         </header> -->
+   <Transition name="modal">
+   <!--
+   <Transition
+      enter-from-class="opacity-0 scale-125"
+      enter-to-class="opacity-100 scale-100"
+      enter-active-class="transition duration-300"
 
-         <div>
-            <slot>default body</slot>
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+      leave-active-class="transition duration-200"
+   >
+   -->
+      <div v-if="show" class="modal-mask">
+         <div class="modal-container">
+            <!-- <header>
+               <slot name="header">default header</slot>
+            </header> -->
+
+            <div>
+               <slot>default body</slot>
+            </div>
+
+            <footer class="modal-footer">
+               <button @click="$emit('close')">Close</button>
+            </footer>
          </div>
-
-         <footer class="modal-footer">
-            <button @click="$emit('close')">Close</button>
-         </footer>
       </div>
-   </div>
+   </Transition>
 </template>
 
 <style scoped>
@@ -54,5 +67,17 @@ defineProps({
 }
 .modal-footer button:hover {
    background: #ccc;
+}
+
+.modal-enter-from {
+   opacity: 0;
+   scale: 125%;
+}
+.modal-enter-to {
+   opacity: 100;
+   scale: 100%;
+}
+.modal-enter-active {
+   transition: opacity .5s, scale .5s;
 }
 </style>
